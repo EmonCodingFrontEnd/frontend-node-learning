@@ -1,0 +1,24 @@
+{
+  "name": "flyin-awesome-package",
+  "version": "1.0.2",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "flyin",
+    "工具包",
+    "依赖库",
+    "丰富的套件",
+    "问秋",
+    "wenqiu"
+  ],
+  "author": "wenqiu <liming20110711@163.com>",
+  "license": "ISC",
+  "description": "问秋第一个npm插件包",
+  "changelog": {
+    "1.0.0": "初版发布",
+    "1.0.1": "fix:入口页面放置错误位置，导致无法使用",
+    "1.0.2": "fix:入口文件调整错误的bug"
+  }
+}
