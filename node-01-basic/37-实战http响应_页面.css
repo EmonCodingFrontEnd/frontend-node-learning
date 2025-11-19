@@ -1,0 +1,20 @@
+/*// node-01-basic/37-实战http响应_页面.css*/
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    border: 1px solid #999;
+}
+
+table tr:nth-child(odd) {
+    background: #4ecdc4;
+}
+
+table tr:nth-child(even) {
+    background: skyblue;
+}
+
+td {
+    border: 1px solid #999;
+    width: 80px;
+    height: 40px;
+}

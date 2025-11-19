@@ -1,0 +1,16 @@
+{
+  "name": "01-npm",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "node ./03-http服务.js",
+    "start": "nodemon ./03-http服务.js"
+  },
+  "author": "wenqiu <liming20110711@163.com>",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "uniq": "^1.0.1"
+  }
+}

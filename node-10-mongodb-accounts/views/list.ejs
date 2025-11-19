@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel='stylesheet' href='/stylesheets/list.css'/>
+    <title>Document</title>
+</head>
+<body>
+<div class="list">
+    <% for (let i = 0; i < accounts.length; i++) { %>
+        <div class="list-item">
+            <div class="header"><%= moment(accounts[i].time).format('YYYY-MM-DD HH:mm') %></div>
+            <div class="content">
+                <span class="slogon"><%= accounts[i].item %></span>
+                <div class="<%= accounts[i].type === 'expense' ? 'out' : 'in' %>">
+                    <%= accounts[i].type === 'expense' ? '支出' : '收入' %>
+                </div>
+                <span class="money"><%= accounts[i].amount %>元</span>
+                <a href="/account/<%= accounts[i]._id %>">
+                    <span class="delete">&#215;</span>
+                </a>
+            </div>
+        </div>
+    <% } %>
+    <!--<div class="list-item">
+        <div class="header">2023-04-05 09:05:05</div>
+        <div class="content">
+            <span class="slogon">抽烟只抽煊赫门，一生只爱一个人！</span>
+            <div class="out">支出</div>
+            <span class="money">-25.00元</span>
+            <span class="delete">&#215;</span>
+        </div>
+    </div>
+
+    <div class="list-item">
+        <div class="header">2023-04-05 09:05:05</div>
+        <div class="content">
+            <span class="slogon">3月份发工资！</span>
+            <div class="in">收入</div>
+            <span class="money">+4396.00元</span>
+            <span class="delete">&#215;</span>
+        </div>
+    </div>
+
+    <div class="list-item">
+        <div class="header">2023-04-05 09:05:05</div>
+        <div class="content">
+            <span class="slogon">抽烟只抽煊赫门，一生只爱一个人！</span>
+            <div class="out">支出</div>
+            <span class="money">-25.00元</span>
+            <span class="delete">&#215;</span>
+        </div>
+    </div>-->
+</div>
+<script type="text/javascript">
+    document.querySelectorAll('.delete').forEach(item => {
+        item.addEventListener('click', function (e) {
+            // item.parentNode.parentNode.parentNode.removeChild(item.parentNode.parentNode)
+            if (confirm('确定要删除吗？')) {
+                item.parentNode.parentNode.parentNode.removeChild(item.parentNode.parentNode)
+            } else {
+                e.preventDefault();
+            }
+        })
+    })
+</script>
+</body>
+</html>

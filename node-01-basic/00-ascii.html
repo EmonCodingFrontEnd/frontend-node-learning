@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASCII字符代码表</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            color: #333;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            color: white;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .description {
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto 20px;
+            line-height: 1.6;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+            backdrop-filter: blur(5px);
+        }
+
+        button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .search-box {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        input {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            width: 300px;
+            font-size: 1rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .table-container {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            margin-bottom: 30px;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            background: #2c3e50;
+            color: white;
+            padding: 15px 10px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+        }
+
+        td {
+            padding: 12px 10px;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+            transition: background 0.2s;
+        }
+
+        tr:hover td {
+            background: rgba(52, 152, 219, 0.1);
+        }
+
+        .decimal {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .hex {
+            font-family: monospace;
+            color: #e74c3c;
+        }
+
+        .char {
+            font-size: 1.2rem;
+            font-weight: bold;
+            background: #f8f9fa;
+            border-radius: 4px;
+            padding: 5px;
+            min-width: 40px;
+            display: inline-block;
+        }
+
+        .control-char {
+            color: #7f8c8d;
+            font-style: italic;
+        }
+
+        .description-cell {
+            text-align: left;
+            padding-left: 20px;
+        }
+
+        .section-title {
+            background: #34495e;
+            color: white;
+            font-weight: bold;
+            text-align: left;
+            padding-left: 20px;
+        }
+
+        .info-panel {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            margin-top: 20px;
+        }
+
+        .info-panel h2 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+
+        .info-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .info-box {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 6px;
+            border-left: 4px solid #3498db;
+        }
+
+        .info-box h3 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .info-box ul {
+            list-style-type: none;
+        }
+
+        .info-box li {
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .info-box li:before {
+            content: "•";
+            color: #3498db;
+            position: absolute;
+            left: 0;
+        }
+
+        footer {
+            text-align: center;
+            color: white;
+            margin-top: 30px;
+            padding: 20px;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            th, td {
+                padding: 8px 5px;
+                font-size: 0.9rem;
+            }
+
+            .char {
+                font-size: 1rem;
+                min-width: 30px;
+            }
+
+            .description-cell {
+                padding-left: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>ASCII字符代码表</h1>
+        <p class="description">
+            ASCII（美国信息交换标准代码）是一种字符编码标准，用于电子通信。ASCII码表定义了128个字符，包括33个不可显示的控制字符和95个可显示字符。
+        </p>
+    </header>
+
+    <div class="controls">
+        <button id="showAll">显示所有字符</button>
+        <button id="showPrintable">仅显示可打印字符</button>
+        <button id="showControl">仅显示控制字符</button>
+    </div>
+
+    <div class="search-box">
+        <input type="text" id="searchInput" placeholder="搜索字符或描述...">
+    </div>
+
+    <div class="table-container">
+        <table id="asciiTable">
+            <thead>
+            <tr>
+                <th>十进制</th>
+                <th>十六进制</th>
+                <th>字符</th>
+                <th>HTML实体</th>
+                <th>描述</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- ASCII表格内容将通过JavaScript生成 -->
+            </tbody>
+        </table>
+    </div>
+
+    <div class="info-panel">
+        <h2>关于ASCII码</h2>
+        <div class="info-content">
+            <div class="info-box">
+                <h3>ASCII码范围</h3>
+                <ul>
+                    <li><strong>0-31</strong>: 控制字符（不可显示）</li>
+                    <li><strong>32-126</strong>: 可显示字符</li>
+                    <li><strong>127</strong>: 删除字符(DEL)</li>
+                    <li><strong>32</strong>: 空格字符</li>
+                    <li><strong>48-57</strong>: 数字 0-9</li>
+                    <li><strong>65-90</strong>: 大写字母 A-Z</li>
+                    <li><strong>97-122</strong>: 小写字母 a-z</li>
+                </ul>
+            </div>
+
+            <div class="info-box">
+                <h3>ASCII码历史</h3>
+                <ul>
+                    <li>1963年首次发布为标准</li>
+                    <li>最初基于英语字母表设计</li>
+                    <li>使用7位二进制数表示字符</li>
+                    <li>是互联网和计算机系统的基础</li>
+                    <li>后来被扩展为8位的扩展ASCII</li>
+                </ul>
+            </div>
+
+            <div class="info-box">
+                <h3>常见控制字符</h3>
+                <ul>
+                    <li><strong>NUL (0)</strong>: 空字符</li>
+                    <li><strong>LF (10)</strong>: 换行</li>
+                    <li><strong>CR (13)</strong>: 回车</li>
+                    <li><strong>ESC (27)</strong>: 退出</li>
+                    <li><strong>DEL (127)</strong>: 删除</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>ASCII字符代码表 &copy; 2023 - 包含所有128个标准ASCII字符</p>
+    </footer>
+</div>
+
+<script>
+    // ASCII字符数据
+    const asciiData = [
+        {decimal: 0, hex: "00", char: "NUL", entity: "&#000;", description: "空字符 (Null)"},
+        {decimal: 1, hex: "01", char: "SOH", entity: "&#001;", description: "标题开始 (Start of Header)"},
+        {decimal: 2, hex: "02", char: "STX", entity: "&#002;", description: "正文开始 (Start of Text)"},
+        {decimal: 3, hex: "03", char: "ETX", entity: "&#003;", description: "正文结束 (End of Text)"},
+        {decimal: 4, hex: "04", char: "EOT", entity: "&#004;", description: "传输结束 (End of Transmission)"},
+        {decimal: 5, hex: "05", char: "ENQ", entity: "&#005;", description: "请求 (Enquiry)"},
+        {decimal: 6, hex: "06", char: "ACK", entity: "&#006;", description: "确认 (Acknowledge)"},
+        {decimal: 7, hex: "07", char: "BEL", entity: "&#007;", description: "响铃 (Bell)"},
+        {decimal: 8, hex: "08", char: "BS", entity: "&#008;", description: "退格 (Backspace)"},
+        {decimal: 9, hex: "09", char: "TAB", entity: "&#009;", description: "水平制表符 (Tab)"},
+        {decimal: 10, hex: "0A", char: "LF", entity: "&#010;", description: "换行 (Line Feed)"},
+        {decimal: 11, hex: "0B", char: "VT", entity: "&#011;", description: "垂直制表符 (Vertical Tab)"},
+        {decimal: 12, hex: "0C", char: "FF", entity: "&#012;", description: "换页 (Form Feed)"},
+        {decimal: 13, hex: "0D", char: "CR", entity: "&#013;", description: "回车 (Carriage Return)"},
+        {decimal: 14, hex: "0E", char: "SO", entity: "&#014;", description: "移出 (Shift Out)"},
+        {decimal: 15, hex: "0F", char: "SI", entity: "&#015;", description: "移入 (Shift In)"},
+        {decimal: 16, hex: "10", char: "DLE", entity: "&#016;", description: "数据链路转义 (Data Link Escape)"},
+        {decimal: 17, hex: "11", char: "DC1", entity: "&#017;", description: "设备控制1 (Device Control 1)"},
+        {decimal: 18, hex: "12", char: "DC2", entity: "&#018;", description: "设备控制2 (Device Control 2)"},
+        {decimal: 19, hex: "13", char: "DC3", entity: "&#019;", description: "设备控制3 (Device Control 3)"},
+        {decimal: 20, hex: "14", char: "DC4", entity: "&#020;", description: "设备控制4 (Device Control 4)"},
+        {decimal: 21, hex: "15", char: "NAK", entity: "&#021;", description: "拒绝接收 (Negative Acknowledge)"},
+        {decimal: 22, hex: "16", char: "SYN", entity: "&#022;", description: "同步空闲 (Synchronize)"},
+        {decimal: 23, hex: "17", char: "ETB", entity: "&#023;", description: "传输块结束 (End of Trans. Block)"},
+        {decimal: 24, hex: "18", char: "CAN", entity: "&#024;", description: "取消 (Cancel)"},
+        {decimal: 25, hex: "19", char: "EM", entity: "&#025;", description: "介质中断 (End of Medium)"},
+        {decimal: 26, hex: "1A", char: "SUB", entity: "&#026;", description: "替换 (Substitute)"},
+        {decimal: 27, hex: "1B", char: "ESC", entity: "&#027;", description: "退出 (Escape)"},
+        {decimal: 28, hex: "1C", char: "FS", entity: "&#028;", description: "文件分隔符 (File Separator)"},
+        {decimal: 29, hex: "1D", char: "GS", entity: "&#029;", description: "组分隔符 (Group Separator)"},
+        {decimal: 30, hex: "1E", char: "RS", entity: "&#030;", description: "记录分隔符 (Record Separator)"},
+        {decimal: 31, hex: "1F", char: "US", entity: "&#031;", description: "单元分隔符 (Unit Separator)"},
+        {decimal: 32, hex: "20", char: "&nbsp;", entity: "&#032;", description: "空格 (Space)"},
+        {decimal: 33, hex: "21", char: "!", entity: "&#033;", description: "感叹号 (Exclamation mark)"},
+        {decimal: 34, hex: "22", char: "\"", entity: "&#034;", description: "双引号 (Double quote)"},
+        {decimal: 35, hex: "23", char: "#", entity: "&#035;", description: "井号 (Number sign)"},
+        {decimal: 36, hex: "24", char: "$", entity: "&#036;", description: "美元符号 (Dollar sign)"},
+        {decimal: 37, hex: "25", char: "%", entity: "&#037;", description: "百分号 (Percent sign)"},
+        {decimal: 38, hex: "26", char: "&", entity: "&#038;", description: "和号 (Ampersand)"},
+        {decimal: 39, hex: "27", char: "'", entity: "&#039;", description: "单引号 (Single quote)"},
+        {decimal: 40, hex: "28", char: "(", entity: "&#040;", description: "左括号 (Left parenthesis)"},
+        {decimal: 41, hex: "29", char: ")", entity: "&#041;", description: "右括号 (Right parenthesis)"},
+        {decimal: 42, hex: "2A", char: "*", entity: "&#042;", description: "星号 (Asterisk)"},
+        {decimal: 43, hex: "2B", char: "+", entity: "&#043;", description: "加号 (Plus sign)"},
+        {decimal: 44, hex: "2C", char: ",", entity: "&#044;", description: "逗号 (Comma)"},
+        {decimal: 45, hex: "2D", char: "-", entity: "&#045;", description: "连字号 (Hyphen)"},
+        {decimal: 46, hex: "2E", char: ".", entity: "&#046;", description: "句号 (Period)"},
+        {decimal: 47, hex: "2F", char: "/", entity: "&#047;", description: "斜杠 (Slash)"},
+        {decimal: 48, hex: "30", char: "0", entity: "&#048;", description: "数字 0"},
+        {decimal: 49, hex: "31", char: "1", entity: "&#049;", description: "数字 1"},
+        {decimal: 50, hex: "32", char: "2", entity: "&#050;", description: "数字 2"},
+        {decimal: 51, hex: "33", char: "3", entity: "&#051;", description: "数字 3"},
+        {decimal: 52, hex: "34", char: "4", entity: "&#052;", description: "数字 4"},
+        {decimal: 53, hex: "35", char: "5", entity: "&#053;", description: "数字 5"},
+        {decimal: 54, hex: "36", char: "6", entity: "&#054;", description: "数字 6"},
+        {decimal: 55, hex: "37", char: "7", entity: "&#055;", description: "数字 7"},
+        {decimal: 56, hex: "38", char: "8", entity: "&#056;", description: "数字 8"},
+        {decimal: 57, hex: "39", char: "9", entity: "&#057;", description: "数字 9"},
+        {decimal: 58, hex: "3A", char: ":", entity: "&#058;", description: "冒号 (Colon)"},
+        {decimal: 59, hex: "3B", char: ";", entity: "&#059;", description: "分号 (Semicolon)"},
+        {decimal: 60, hex: "3C", char: "<", entity: "&#060;", description: "小于号 (Less than)"},
+        {decimal: 61, hex: "3D", char: "=", entity: "&#061;", description: "等号 (Equals sign)"},
+        {decimal: 62, hex: "3E", char: ">", entity: "&#062;", description: "大于号 (Greater than)"},
+        {decimal: 63, hex: "3F", char: "?", entity: "&#063;", description: "问号 (Question mark)"},
+        {decimal: 64, hex: "40", char: "@", entity: "&#064;", description: "At 符号 (At sign)"},
+        {decimal: 65, hex: "41", char: "A", entity: "&#065;", description: "大写字母 A"},
+        {decimal: 66, hex: "42", char: "B", entity: "&#066;", description: "大写字母 B"},
+        {decimal: 67, hex: "43", char: "C", entity: "&#067;", description: "大写字母 C"},
+        {decimal: 68, hex: "44", char: "D", entity: "&#068;", description: "大写字母 D"},
+        {decimal: 69, hex: "45", char: "E", entity: "&#069;", description: "大写字母 E"},
+        {decimal: 70, hex: "46", char: "F", entity: "&#070;", description: "大写字母 F"},
+        {decimal: 71, hex: "47", char: "G", entity: "&#071;", description: "大写字母 G"},
+        {decimal: 72, hex: "48", char: "H", entity: "&#072;", description: "大写字母 H"},
+        {decimal: 73, hex: "49", char: "I", entity: "&#073;", description: "大写字母 I"},
+        {decimal: 74, hex: "4A", char: "J", entity: "&#074;", description: "大写字母 J"},
+        {decimal: 75, hex: "4B", char: "K", entity: "&#075;", description: "大写字母 K"},
+        {decimal: 76, hex: "4C", char: "L", entity: "&#076;", description: "大写字母 L"},
+        {decimal: 77, hex: "4D", char: "M", entity: "&#077;", description: "大写字母 M"},
+        {decimal: 78, hex: "4E", char: "N", entity: "&#078;", description: "大写字母 N"},
+        {decimal: 79, hex: "4F", char: "O", entity: "&#079;", description: "大写字母 O"},
+        {decimal: 80, hex: "50", char: "P", entity: "&#080;", description: "大写字母 P"},
+        {decimal: 81, hex: "51", char: "Q", entity: "&#081;", description: "大写字母 Q"},
+        {decimal: 82, hex: "52", char: "R", entity: "&#082;", description: "大写字母 R"},
+        {decimal: 83, hex: "53", char: "S", entity: "&#083;", description: "大写字母 S"},
+        {decimal: 84, hex: "54", char: "T", entity: "&#084;", description: "大写字母 T"},
+        {decimal: 85, hex: "55", char: "U", entity: "&#085;", description: "大写字母 U"},
+        {decimal: 86, hex: "56", char: "V", entity: "&#086;", description: "大写字母 V"},
+        {decimal: 87, hex: "57", char: "W", entity: "&#087;", description: "大写字母 W"},
+        {decimal: 88, hex: "58", char: "X", entity: "&#088;", description: "大写字母 X"},
+        {decimal: 89, hex: "59", char: "Y", entity: "&#089;", description: "大写字母 Y"},
+        {decimal: 90, hex: "5A", char: "Z", entity: "&#090;", description: "大写字母 Z"},
+        {decimal: 91, hex: "5B", char: "[", entity: "&#091;", description: "左方括号 (Left square bracket)"},
+        {decimal: 92, hex: "5C", char: "\\", entity: "&#092;", description: "反斜杠 (Backslash)"},
+        {decimal: 93, hex: "5D", char: "]", entity: "&#093;", description: "右方括号 (Right square bracket)"},
+        {decimal: 94, hex: "5E", char: "^", entity: "&#094;", description: "脱字符 (Caret)"},
+        {decimal: 95, hex: "5F", char: "_", entity: "&#095;", description: "下划线 (Underscore)"},
+        {decimal: 96, hex: "60", char: "`", entity: "&#096;", description: "重音符 (Grave accent)"},
+        {decimal: 97, hex: "61", char: "a", entity: "&#097;", description: "小写字母 a"},
+        {decimal: 98, hex: "62", char: "b", entity: "&#098;", description: "小写字母 b"},
+        {decimal: 99, hex: "63", char: "c", entity: "&#099;", description: "小写字母 c"},
+        {decimal: 100, hex: "64", char: "d", entity: "&#100;", description: "小写字母 d"},
+        {decimal: 101, hex: "65", char: "e", entity: "&#101;", description: "小写字母 e"},
+        {decimal: 102, hex: "66", char: "f", entity: "&#102;", description: "小写字母 f"},
+        {decimal: 103, hex: "67", char: "g", entity: "&#103;", description: "小写字母 g"},
+        {decimal: 104, hex: "68", char: "h", entity: "&#104;", description: "小写字母 h"},
+        {decimal: 105, hex: "69", char: "i", entity: "&#105;", description: "小写字母 i"},
+        {decimal: 106, hex: "6A", char: "j", entity: "&#106;", description: "小写字母 j"},
+        {decimal: 107, hex: "6B", char: "k", entity: "&#107;", description: "小写字母 k"},
+        {decimal: 108, hex: "6C", char: "l", entity: "&#108;", description: "小写字母 l"},
+        {decimal: 109, hex: "6D", char: "m", entity: "&#109;", description: "小写字母 m"},
+        {decimal: 110, hex: "6E", char: "n", entity: "&#110;", description: "小写字母 n"},
+        {decimal: 111, hex: "6F", char: "o", entity: "&#111;", description: "小写字母 o"},
+        {decimal: 112, hex: "70", char: "p", entity: "&#112;", description: "小写字母 p"},
+        {decimal: 113, hex: "71", char: "q", entity: "&#113;", description: "小写字母 q"},
+        {decimal: 114, hex: "72", char: "r", entity: "&#114;", description: "小写字母 r"},
+        {decimal: 115, hex: "73", char: "s", entity: "&#115;", description: "小写字母 s"},
+        {decimal: 116, hex: "74", char: "t", entity: "&#116;", description: "小写字母 t"},
+        {decimal: 117, hex: "75", char: "u", entity: "&#117;", description: "小写字母 u"},
+        {decimal: 118, hex: "76", char: "v", entity: "&#118;", description: "小写字母 v"},
+        {decimal: 119, hex: "77", char: "w", entity: "&#119;", description: "小写字母 w"},
+        {decimal: 120, hex: "78", char: "x", entity: "&#120;", description: "小写字母 x"},
+        {decimal: 121, hex: "79", char: "y", entity: "&#121;", description: "小写字母 y"},
+        {decimal: 122, hex: "7A", char: "z", entity: "&#122;", description: "小写字母 z"},
+        {decimal: 123, hex: "7B", char: "{", entity: "&#123;", description: "左花括号 (Left curly brace)"},
+        {decimal: 124, hex: "7C", char: "|", entity: "&#124;", description: "竖线 (Vertical bar)"},
+        {decimal: 125, hex: "7D", char: "}", entity: "&#125;", description: "右花括号 (Right curly brace)"},
+        {decimal: 126, hex: "7E", char: "~", entity: "&#126;", description: "波浪号 (Tilde)"},
+        {decimal: 127, hex: "7F", char: "DEL", entity: "&#127;", description: "删除 (Delete)"}
+    ];
+
+    // 生成表格
+    function generateTable(data) {
+        const tbody = document.querySelector('#asciiTable tbody');
+        tbody.innerHTML = '';
+
+        data.forEach(item => {
+            const row = document.createElement('tr');
+            const isControlChar = item.decimal < 32 || item.decimal === 127;
+
+            row.innerHTML = `
+                    <td class="decimal">${item.decimal}</td>
+                    <td class="hex">${item.hex}</td>
+                    <td>
+                        <span class="char ${isControlChar ? 'control-char' : ''}">
+                            ${item.char}
+                        </span>
+                    </td>
+                    <td>${item.entity}</td>
+                    <td class="description-cell">${item.description}</td>
+                `;
+
+            tbody.appendChild(row);
+        });
+    }
+
+    // 初始生成表格
+    generateTable(asciiData);
+
+    // 按钮事件
+    document.getElementById('showAll').addEventListener('click', function() {
+        generateTable(asciiData);
+    });
+
+    document.getElementById('showPrintable').addEventListener('click', function() {
+        const printable = asciiData.filter(item => item.decimal >= 32 && item.decimal <= 126);
+        generateTable(printable);
+    });
+
+    document.getElementById('showControl').addEventListener('click', function() {
+        const control = asciiData.filter(item => item.decimal < 32 || item.decimal === 127);
+        generateTable(control);
+    });
+
+    // 搜索功能
+    document.getElementById('searchInput').addEventListener('input', function() {
+        const searchTerm = this.value.toLowerCase();
+
+        if (searchTerm === '') {
+            generateTable(asciiData);
+            return;
+        }
+
+        const filtered = asciiData.filter(item =>
+            item.decimal.toString().includes(searchTerm) ||
+            item.hex.toLowerCase().includes(searchTerm) ||
+            item.char.toLowerCase().includes(searchTerm) ||
+            item.description.toLowerCase().includes(searchTerm)
+        );
+
+        generateTable(filtered);
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,1 @@
+module.exports = "不好意思，我是index.js"

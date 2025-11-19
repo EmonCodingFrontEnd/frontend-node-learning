@@ -1,0 +1,28 @@
+{
+  "accounts": [
+    {
+      "id": "vaVOpBqFd",
+      "item": "晚饭",
+      "time": "2025-11-09T13:18",
+      "type": "income",
+      "amount": "20",
+      "recurring": "true"
+    },
+    {
+      "id": "7q9honCEl",
+      "item": "买晚饭",
+      "time": "2025-11-02T12:58",
+      "type": "expense",
+      "amount": "20",
+      "recurring": "true"
+    },
+    {
+      "id": "sm-N9PP7y",
+      "item": "发工资",
+      "time": "2025-11-02T15:49",
+      "type": "income",
+      "amount": "4396",
+      "recurring": "true"
+    }
+  ]
+}
